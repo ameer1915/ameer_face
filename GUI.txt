@@ -1,0 +1,77 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def عرض_الرسالة():
+    النص = حقل_النص.get()
+    if النص.strip():
+        نص_النتيجة.config(text=f"مرحباً: {النص}")
+    else:
+        messagebox.showwarning("تنبيه", "الرجاء إدخال بعض النص")
+
+def مسح_الحقول():
+    حقل_النص.delete(0, tk.END)
+    نص_النتيجة.config(text="النتيجة ستظهر هنا")
+
+# إنشاء النافذة الرئيسية
+النافذة = tk.Tk()
+النافذة.title("واجهة ترحيب")
+النافذة.geometry("400x250")
+النافذة.config(bg="#f0f0f0")
+
+# تسمية توضيحية
+تسمية = tk.Label(
+    النافذة,
+    text="أدخل اسمك:",
+    font=("Arial", 14),
+    bg="#f0f0f0"
+)
+تسمية.pack(pady=10)
+
+# حقل إدخال النص
+حقل_النص = tk.Entry(
+    النافذة,
+    width=30,
+    font=("Arial", 12),
+    bd=2,
+    relief="solid"
+)
+حقل_النص.pack(pady=5)
+
+# زر عرض الرسالة
+زر_عرض = tk.Button(
+    النافذة,
+    text="عرض الرسالة",
+    command=عرض_الرسالة,
+    font=("Arial", 12),
+    bg="#4CAF50",
+    fg="white",
+    padx=10,
+    pady=5
+)
+زر_عرض.pack(pady=10)
+
+# زر المسح
+زر_مسح = tk.Button(
+    النافذة,
+    text="مسح",
+    command=مسح_الحقول,
+    font=("Arial", 12),
+    bg="#f44336",
+    fg="white",
+    padx=20,
+    pady=5
+)
+زر_مسح.pack(pady=5)
+
+# ملصق النتيجة
+نص_النتيجة = tk.Label(
+    النافذة,
+    text="النتيجة ستظهر هنا",
+    font=("Arial", 12, "italic"),
+    bg="#f0f0f0",
+    fg="#333"
+)
+نص_النتيجة.pack(pady=(20, 0))
+
+# تشغيل التطبيق
+النافذة.mainloop()
