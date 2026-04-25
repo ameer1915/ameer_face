@@ -1,79 +1,148 @@
 import tkinter as tk
 from tkinter import messagebox
 
-def عرض_الرسالة():
-    global entry_text
-    text = entry_text.get()
-    if text.strip():
-        result_label.config(text=f"مرحباً: {text}")
-    else:
-        messagebox.showwarning("تنبيه", "الرجاء إدخال بعض النص")
+class تطبيق_الواجهة:
+    def __init__(self):
+        self.nافذة = tk.Tk()
+        self.nافذة.title("تطبيق ترحيب")
+        self.nافذة.geometry("450x300")
+        self.nافذة.config(bg="#f0f0f0")
+        
+        # تخزين المتغيرات كخصائص للكلاس
+        self.حقل_النص = None
+        self.نتيجة = None
+        
+        # إنشاء الواجهة
+        self.إنشاء_العناصر()
+        
+    def إنشاء_العناصر(self):
+        # عنوان
+        العنوان = tk.Label(
+            self.nافذة,
+            text="برنامج الترحيب",
+            font=("Arial", 18, "bold"),
+            bg="#f0f0f0",
+            fg="#333"
+        )
+        العنوان.pack(pady=10)
+        
+        # تسمية
+        التسمية = tk.Label(
+            self.nافذة,
+            text="أدخل اسمك:",
+            font=("Arial", 14),
+            bg="#f0f0f0"
+        )
+        التسمية.pack(pady=10)
+        
+        # حقل الإدخال
+        self.حقل_النص = tk.Entry(
+            self.nافذة,
+            width=35,
+            font=("Arial", 12),
+            bd=2,
+            relief="solid"
+        )
+        self.حقل_النص.pack(pady=5)
+        
+        # إطار للأزرار (لتنسيق أفضل)
+        اطار_الازرار = tk.Frame(self.nافذة, bg="#f0f0f0")
+        اطار_الازرار.pack(pady=15)
+        
+        # زر العرض
+        زر_العرض = tk.Button(
+            اطار_الازرار,
+            text="عرض الرسالة",
+            command=self.عرض_الرسالة,
+            font=("Arial", 12),
+            bg="#4CAF50",
+            fg="white",
+            padx=15,
+            pady=5,
+            cursor="hand2"
+        )
+        زر_العرض.pack(side=tk.LEFT, padx=5)
+        
+        # زر المسح
+        زر_المسح = tk.Button(
+            اطار_الازرار,
+            text="مسح",
+            command=self.مسح_الحقول,
+            font=("Arial", 12),
+            bg="#f44336",
+            fg="white",
+            padx=20,
+            pady=5,
+            cursor="hand2"
+        )
+        زر_المسح.pack(side=tk.LEFT, padx=5)
+        
+        # زر الخروج
+        زر_الخروج = tk.Button(
+            اطار_الازرار,
+            text="خروج",
+            command=self.nافذة.quit,
+            font=("Arial", 12),
+            bg="#555",
+            fg="white",
+            padx=15,
+            pady=5,
+            cursor="hand2"
+        )
+        زر_الخروج.pack(side=tk.LEFT, padx=5)
+        
+        # ملصق النتيجة
+        self.نتيجة = tk.Label(
+            self.nافذة,
+            text="⚫ في انتظار الإدخال ⚫",
+            font=("Arial", 12, "bold"),
+            bg="#f0f0f0",
+            fg="#2196F3",
+            relief="sunken",
+            padx=10,
+            pady=5
+        )
+        self.نتيجة.pack(pady=(20, 10), fill=tk.X, padx=20)
+        
+        # تسمية سفلى
+        تسمية_سفلى = tk.Label(
+            self.nافذة,
+            text="© 2024 - تطبيق بسيط بواجهة رسومية",
+            font=("Arial", 8),
+            bg="#f0f0f0",
+            fg="#999"
+        )
+        تسمية_سفلى.pack(side=tk.BOTTOM, pady=5)
+    
+    def عرض_الرسالة(self):
+        """عرض رسالة الترحيب"""
+        النص = self.حقل_النص.get()
+        if النص.strip():
+            self.نتيجة.config(
+                text=f"✨ مرحباً بك يا {النص} ✨",
+                fg="#4CAF50"
+            )
+            messagebox.showinfo("ترحيب", f"أهلاً وسهلاً بك {النص}")
+        else:
+            self.نتيجة.config(
+                text="⚠️ الرجاء إدخال اسمك أولاً ⚠️",
+                fg="#f44336"
+            )
+            messagebox.showwarning("تنبيه", "الرجاء إدخال اسمك في الحقل")
+    
+    def مسح_الحقول(self):
+        """مسح جميع الحقول"""
+        self.حقل_النص.delete(0, tk.END)
+        self.نتيجة.config(
+            text="⚫ تم مسح الحقول ⚫",
+            fg="#2196F3"
+        )
+    
+    def تشغيل(self):
+        """تشغيل التطبيق"""
+        self.nافذة.mainloop()
 
-def مسح_الحقول():
-    global entry_text
-    entry_text.delete(0, tk.END)
-    result_label.config(text="النتيجة ستظهر هنا")
-
-# إنشاء النافذة الرئيسية
-window = tk.Tk()
-window.title("واجهة ترحيب")
-window.geometry("400x250")
-window.config(bg="#f0f0f0")
-
-# تسمية توضيحية
-label = tk.Label(
-    window,
-    text="أدخل اسمك:",
-    font=("Arial", 14),
-    bg="#f0f0f0"
-)
-label.pack(pady=10)
-
-# حقل إدخال النص
-entry_text = tk.Entry(
-    window,
-    width=30,
-    font=("Arial", 12),
-    bd=2,
-    relief="solid"
-)
-entry_text.pack(pady=5)
-
-# زر عرض الرسالة
-show_button = tk.Button(
-    window,
-    text="عرض الرسالة",
-    command=عرض_الرسالة,
-    font=("Arial", 12),
-    bg="#4CAF50",
-    fg="white",
-    padx=10,
-    pady=5
-)
-show_button.pack(pady=10)
-
-# زر المسح
-clear_button = tk.Button(
-    window,
-    text="مسح",
-    command=مسح_الحقول,
-    font=("Arial", 12),
-    bg="#f44336",
-    fg="white",
-    padx=20,
-    pady=5
-)
-clear_button.pack(pady=5)
-
-# ملصق النتيجة
-result_label = tk.Label(
-    window,
-    text="النتيجة ستظهر هنا",
-    font=("Arial", 12, "italic"),
-    bg="#f0f0f0",
-    fg="#333"
-)
-result_label.pack(pady=(20, 0))
-
-# تشغيل التطبيق
-window.mainloop()
+# تشغيل البرنامج
+if __name__ == "__main__":
+    التطبيق = تطبيق_الواجهة()
+    التطبيق.تشغيل()
