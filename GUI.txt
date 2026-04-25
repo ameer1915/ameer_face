@@ -2,44 +2,46 @@ import tkinter as tk
 from tkinter import messagebox
 
 def عرض_الرسالة():
-    النص = حقل_النص.get()
-    if النص.strip():
-        نص_النتيجة.config(text=f"مرحباً: {النص}")
+    global entry_text
+    text = entry_text.get()
+    if text.strip():
+        result_label.config(text=f"مرحباً: {text}")
     else:
         messagebox.showwarning("تنبيه", "الرجاء إدخال بعض النص")
 
 def مسح_الحقول():
-    حقل_النص.delete(0, tk.END)
-    نص_النتيجة.config(text="النتيجة ستظهر هنا")
+    global entry_text
+    entry_text.delete(0, tk.END)
+    result_label.config(text="النتيجة ستظهر هنا")
 
 # إنشاء النافذة الرئيسية
-النافذة = tk.Tk()
-النافذة.title("واجهة ترحيب")
-النافذة.geometry("400x250")
-النافذة.config(bg="#f0f0f0")
+window = tk.Tk()
+window.title("واجهة ترحيب")
+window.geometry("400x250")
+window.config(bg="#f0f0f0")
 
 # تسمية توضيحية
-تسمية = tk.Label(
-    النافذة,
+label = tk.Label(
+    window,
     text="أدخل اسمك:",
     font=("Arial", 14),
     bg="#f0f0f0"
 )
-تسمية.pack(pady=10)
+label.pack(pady=10)
 
 # حقل إدخال النص
-حقل_النص = tk.Entry(
-    النافذة,
+entry_text = tk.Entry(
+    window,
     width=30,
     font=("Arial", 12),
     bd=2,
     relief="solid"
 )
-حقل_النص.pack(pady=5)
+entry_text.pack(pady=5)
 
 # زر عرض الرسالة
-زر_عرض = tk.Button(
-    النافذة,
+show_button = tk.Button(
+    window,
     text="عرض الرسالة",
     command=عرض_الرسالة,
     font=("Arial", 12),
@@ -48,11 +50,11 @@ def مسح_الحقول():
     padx=10,
     pady=5
 )
-زر_عرض.pack(pady=10)
+show_button.pack(pady=10)
 
 # زر المسح
-زر_مسح = tk.Button(
-    النافذة,
+clear_button = tk.Button(
+    window,
     text="مسح",
     command=مسح_الحقول,
     font=("Arial", 12),
@@ -61,17 +63,17 @@ def مسح_الحقول():
     padx=20,
     pady=5
 )
-زر_مسح.pack(pady=5)
+clear_button.pack(pady=5)
 
 # ملصق النتيجة
-نص_النتيجة = tk.Label(
-    النافذة,
+result_label = tk.Label(
+    window,
     text="النتيجة ستظهر هنا",
     font=("Arial", 12, "italic"),
     bg="#f0f0f0",
     fg="#333"
 )
-نص_النتيجة.pack(pady=(20, 0))
+result_label.pack(pady=(20, 0))
 
 # تشغيل التطبيق
-النافذة.mainloop()
+window.mainloop()
